@@ -38,7 +38,7 @@
             android:scrollbars="vertical"
             android:imeOptions="flagNoFullscreen"
             android:inputType="textMultiLine"
-            android:hint="@string/please_input_text" />
+            android:hint="@string/placeholder_please_input_text" />
 
     </RelativeLayout>
 

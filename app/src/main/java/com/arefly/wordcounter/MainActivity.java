@@ -8,11 +8,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -81,24 +84,32 @@ public class MainActivity extends AppCompatActivity {
         charBtn = (Button) findViewById(R.id.id_button_char);
 
         wordBtn.setText(getCountString("", "Word"));
-        charBtn.setText("0 char.");
+        charBtn.setText(getCountString("", "Character"));
 
 
         mainEditText = (EditText) findViewById(R.id.id_main_edit_text);
 
         mainEditText.addTextChangedListener(new TextWatcher() {
 
+            private CountWordsAsyncTask asyncTask;
+
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(final Editable s) {
+                //Log.e(TAG, "afterTextChanged");
+
                 String text = s.toString().trim();
 
-                wordBtn.setText(getCountString(text, "Word"));
-                charBtn.setText(getCountString(text, "Character"));
+                if(asyncTask != null) {
+                    asyncTask.cancel(true);
+                    //Log.e(TAG, "noyes"+asyncTask.getStatus());
+                }
+
+                asyncTask = (CountWordsAsyncTask) new CountWordsAsyncTask().execute(text);
+
             }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
@@ -198,6 +209,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    class CountWordsAsyncTask extends AsyncTask<String, Void, Map<String, String>> {
+        @Override
+        protected Map<String, String> doInBackground(String... inputParas) {
+            String text = inputParas[0];
+
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("Word", getCountString(text, "Word"));
+            map.put("Character", getCountString(text, "Character"));
+
+            return map;
+        }
+
+        @Override
+        protected void onPostExecute(Map<String, String> result) {
+            wordBtn.setText(result.get("Word"));
+            charBtn.setText(result.get("Character"));
+        }
+
+    }
+
+
     public int wordCount(String inputString) {
 
         // 代碼邏輯來自於iOS版本的字數統計工具
@@ -282,17 +314,6 @@ public class MainActivity extends AppCompatActivity {
         // 代碼邏輯來自於iOS版本的字數統計工具
 
         int characterCounts = 0;
-
-        /*List<String> charList = new ArrayList<String>(Arrays.asList(inputString.split("")));
-        charList.remove(0);
-
-        for (String eachChar: charList) {
-            if (eachChar == null) { continue; }
-            if (TextUtils.isEmpty(eachChar)) { continue; }
-            if (eachChar == "\n") { continue; }
-            if (eachChar == " ") { continue; }
-            characterCounts += 1;
-        }*/
 
         String stringToBeCount = inputString.replace(" ", "").replace("\n", "");
 

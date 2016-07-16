@@ -2,24 +2,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.arefly.wordcounter.MainActivity">
+
+    <item
+        android:id="@+id/action_count"
+        android:orderInCategory="101"
+        android:title="Count..."
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_clear"
+        android:orderInCategory="102"
+        android:title="Clear"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_about"
-        android:orderInCategory="100"
+        android:orderInCategory="999"
         android:title="@string/action_about"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_new"
-        android:orderInCategory="101"
-        android:title="NEW"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_haha"
-        android:orderInCategory="102"
-        android:title="YAYA"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_yaya"
-        android:orderInCategory="102"
-        android:title="123"
         app:showAsAction="never" />
 </menu>
