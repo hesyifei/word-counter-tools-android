@@ -1,14 +1,36 @@
 <resources>
     <string name="app_name">Word Counter</string>
 
-    <string name="id_main_edit_text">Main Edit Text</string>
-    <string name="id_toolbar_top">Toolbar Top</string>
-    <string name="id_toolbar_bottom">Toolbar Bottom</string>
+    <string name="id_main_edit_text">Main Edit Text ID</string>
+    <string name="id_toolbar_top">Toolbar Top ID</string>
+    <string name="id_toolbar_bottom">Toolbar Bottom ID</string>
 
-    <string name="id_button_word">Word Button</string>
-    <string name="id_button_char">Character Button</string>
+    <string name="id_button_word">Word Button ID</string>
+    <string name="id_button_char">Character Button ID</string>
 
-    <string name="please_input_text">Type or paste here...</string>
+    <string name="placeholder_please_input_text">Type or paste here&#8230;</string>
+
+
+    <string name="unit_word_singular">word</string>
+    <string name="unit_word_plural">words</string>
+
+    <string name="unit_short_word_singular">word</string>
+    <string name="unit_short_word_plural">words</string>
+
+    <string name="unit_character_singular">character</string>
+    <string name="unit_character_plural">characters</string>
+
+    <string name="unit_short_character_singular">char.</string>
+    <string name="unit_short_character_plural">chars.</string>
+
+    <string name="unit_paragraph_singular">paragraph</string>
+    <string name="unit_paragraph_plural">paragraphs</string>
+
+    <string name="unit_short_paragraph_singular">para.</string>
+    <string name="unit_short_paragraph_plural">paras.</string>
+
+    <string name="unit_sentence_singular">sentence</string>
+    <string name="unit_sentence_plural">sentences</string>
 
     <string name="button_done">Done</string>
 

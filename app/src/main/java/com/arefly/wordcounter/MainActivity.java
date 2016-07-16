@@ -3,8 +3,10 @@ package com.arefly.wordcounter;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    private Map<String, String> unitStringData = new HashMap<String, String>();
+
     private Toolbar topToolbar;
     private EditText mainEditText;
 
@@ -53,6 +57,26 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        unitStringData.put("Word.Singular", getString(R.string.unit_word_singular));
+        unitStringData.put("Word.Plural", getString(R.string.unit_word_plural));
+        unitStringData.put("Word.Short.Singular", getString(R.string.unit_short_word_singular));
+        unitStringData.put("Word.Short.Plural", getString(R.string.unit_short_word_plural));
+
+        unitStringData.put("Character.Singular", getString(R.string.unit_character_singular));
+        unitStringData.put("Character.Plural", getString(R.string.unit_character_plural));
+        unitStringData.put("Character.Short.Singular", getString(R.string.unit_short_character_singular));
+        unitStringData.put("Character.Short.Plural", getString(R.string.unit_short_character_plural));
+
+        unitStringData.put("Paragraph.Singular", getString(R.string.unit_paragraph_singular));
+        unitStringData.put("Paragraph.Plural", getString(R.string.unit_paragraph_plural));
+        unitStringData.put("Paragraph.Short.Singular", getString(R.string.unit_short_paragraph_singular));
+        unitStringData.put("Paragraph.Short.Plural", getString(R.string.unit_short_paragraph_plural));
+
+        unitStringData.put("Sentence.Singular", getString(R.string.unit_sentence_singular));
+        unitStringData.put("Sentence.Plural", getString(R.string.unit_sentence_plural));
+
+
+
         wordBtn = (Button) findViewById(R.id.id_button_word);
         charBtn = (Button) findViewById(R.id.id_button_char);
 
@@ -69,8 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 String text = s.toString().trim();
 
                 wordBtn.setText(getCountString(text, "Word"));
-
-                charBtn.setText(text.length()+" characters");
+                charBtn.setText(getCountString(text, "Character"));
             }
 
             @Override
@@ -147,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
     public String getCountString(String inputString, String type) {
         int count = getCount(inputString, type);
-        String unitString = (count == 1) ? "word" : "words";
+        String unitString = (count == 1) ? unitStringData.get(type+".Short.Singular") : unitStringData.get(type+".Short.Plural");
         return count+" "+unitString;
     }
 
@@ -158,10 +181,10 @@ public class MainActivity extends AppCompatActivity {
             case "Word":
                 returnInt = wordCount(inputString);
                 break;
-            /*case "Character":
+            case "Character":
                 returnInt = characterCount(inputString);
                 break;
-            case "Paragraph":
+            /*case "Paragraph":
                 returnInt = paragraphCount(inputString);
                 break;
             case "Sentence":
@@ -174,7 +197,11 @@ public class MainActivity extends AppCompatActivity {
         return returnInt;
     }
 
+
     public int wordCount(String inputString) {
+
+        // 代碼邏輯來自於iOS版本的字數統計工具
+
         int counts = 0;
         String lines[] = inputString.replaceAll("\\p{P}", "").split("\\r?\\n");
         String joinedString = TextUtils.join(" ", lines);
@@ -249,6 +276,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    public int characterCount(String inputString) {
+
+        // 代碼邏輯來自於iOS版本的字數統計工具
+
+        int characterCounts = 0;
+
+        /*List<String> charList = new ArrayList<String>(Arrays.asList(inputString.split("")));
+        charList.remove(0);
+
+        for (String eachChar: charList) {
+            if (eachChar == null) { continue; }
+            if (TextUtils.isEmpty(eachChar)) { continue; }
+            if (eachChar == "\n") { continue; }
+            if (eachChar == " ") { continue; }
+            characterCounts += 1;
+        }*/
+
+        String stringToBeCount = inputString.replace(" ", "").replace("\n", "");
+
+        return stringToBeCount.length();
+    }
+
+
     public static boolean isCJK(String str){
         int length = str.length();
         for (int i = 0; i < length; i++){
@@ -266,43 +317,3 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
-
-/*
-var s = inputString
-        for punctuation in punctuations {
-            // Remove punctuations
-            s = s.stringByReplacingOccurrencesOfString(punctuation, withString: "")
-        }
-
-        var counts = 0
-        let lines = s.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
-        let joinedString = lines.joinWithSeparator(" ")
-        let words = joinedString.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-
-        let modifiedWords = words.filter({
-            let s = $0 as String?
-            if !(s != nil) { return false }
-            if (s!).characters.count < 1 { return false }
-
-            if(s!.containsChineseCharacters){
-                var results = self.matchesForRegexInText("\\p{Han}", text: s!)
-                var sArray: Array = Array((s!).characters)
-                if(String(sArray[0]) != results[0]){
-                    counts += 1
-                }
-                //print(sArray[count(sArray)-1])
-                //print(results[count(results)-1])
-                if(String(sArray[sArray.count-1]) != results[results.count-1]){
-                    counts += 1
-                }
-                counts += results.count
-                return false
-            }
-
-            return true
-        })
-
-        counts += modifiedWords.count
-
-        return counts
- */
