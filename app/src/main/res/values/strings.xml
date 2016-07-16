@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Word Counter</string>
+
+    <string name="id_main_edit_text">Main Edit Text</string>
+    <string name="id_toolbar_top">Toolbar Top</string>
+    <string name="id_toolbar_bottom">Toolbar Bottom</string>
+
+    <string name="id_button_word">Word Button</string>
+    <string name="id_button_char">Character Button</string>
+
+    <string name="please_input_text">Type or paste here...</string>
+
+    <string name="button_done">Done</string>
+
+    <string name="action_about">About</string>
+</resources>
