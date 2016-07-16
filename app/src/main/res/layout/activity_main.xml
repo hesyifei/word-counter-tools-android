@@ -58,6 +58,7 @@
             android:textColor="@color/colorWhiteText"
             android:id="@+id/id_button_word"
             android:text=""
+            android:onClick="countResultButtonAction"
             android:layout_gravity="start"
             />
         <Button
@@ -67,6 +68,7 @@
             android:textColor="@color/colorWhiteText"
             android:id="@+id/id_button_char"
             android:text=""
+            android:onClick="countResultButtonAction"
             android:layout_gravity="start"
             />
 
