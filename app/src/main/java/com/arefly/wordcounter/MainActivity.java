@@ -15,9 +15,11 @@ import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -182,17 +184,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void countResultButtonAction(View view) {
-        Context context = getApplicationContext();
-        CharSequence text = "Hello toast!\n\nTESTTEST\n\nTESTTEST\n\nHAHAH";
-        int duration = Toast.LENGTH_LONG;
+        AlertDialog.Builder countResultBuilder = new AlertDialog.Builder(MainActivity.this);
+        countResultBuilder.setMessage("Write your message here.\n123\n456\n789");
+        countResultBuilder.setCancelable(true);
 
-        Toast toast = Toast.makeText(context, text, duration);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            toast.setGravity(Gravity.TOP | Gravity.RIGHT, 20, 20);
-        } else {
-            toast.setGravity(Gravity.TOP | Gravity.RIGHT, 0, 0);
-        }
-        toast.show();
+        countResultBuilder.setNeutralButton(
+                "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog countResultAlert = countResultBuilder.create();
+        countResultAlert.show();
     }
 
 
