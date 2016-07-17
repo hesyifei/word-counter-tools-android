@@ -71,16 +71,6 @@
             android:onClick="countResultButtonAction"
             android:layout_gravity="start"
             />
-
-        <Button
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:textColor="@color/colorWhiteText"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="end"
-            android:onClick="doneButtonAction"
-            android:text="@string/button_done"
-            />
     </android.support.v7.widget.Toolbar>
 
 </android.support.design.widget.CoordinatorLayout>

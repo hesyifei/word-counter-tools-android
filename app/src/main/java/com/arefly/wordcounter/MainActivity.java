@@ -171,9 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    /** Called when the user clicks the Done button */
-    public void doneButtonAction(View view) {
-        // Do something in response to button
+    public void hideKeyboard() {
         // Check if no view has focus:
         View currentFocusView = this.getCurrentFocus();
         // 隱藏軟鍵盤
