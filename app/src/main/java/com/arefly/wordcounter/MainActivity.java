@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private Map<String, String> unitStringData = new HashMap<String, String>();
+    private Map<String, String> unitStringData = new HashMap<>();
 
     private Toolbar topToolbar;
     private EditText mainEditText;
@@ -161,9 +161,44 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id) {
+            case R.id.action_count:
+                Log.i(TAG, "Count Action Clicked");
+
+                showCountResultAlert(mainEditText.getText().toString());
+
+                return true;
+            case R.id.action_clear:
+                Log.i(TAG, "Clear Action Clicked");
+
+                AlertDialog.Builder clearContentBuilder = new AlertDialog.Builder(MainActivity.this);
+                clearContentBuilder.setTitle(getString(R.string.alert_before_clear_title));
+                clearContentBuilder.setMessage(getString(R.string.alert_before_clear_message));
+                clearContentBuilder.setCancelable(true);
+
+                clearContentBuilder.setPositiveButton(
+                        getString(R.string.alert_before_clear_button_clear),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                mainEditText.setText("");
+                                dialog.cancel();
+                            }
+                        });
+                clearContentBuilder.setNegativeButton(
+                        getString(R.string.alert_before_clear_button_cancel),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog clearContentAlert = clearContentBuilder.create();
+                clearContentAlert.show();
+
+                return true;
             case R.id.action_about:
                 Log.i(TAG, "About Action Clicked");
                 Intent aboutIntent = new Intent(this, AboutActivity.class);
+                // http://stackoverflow.com/a/10960720/2603230
                 aboutIntent.putExtra( AboutActivity.EXTRA_SHOW_FRAGMENT, AboutActivity.AboutFragment.class.getName() );
                 aboutIntent.putExtra( AboutActivity.EXTRA_NO_HEADERS, true );
                 startActivity(aboutIntent);
@@ -187,6 +222,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void countResultButtonAction(View view) {
+        showCountResultAlert(mainEditText.getText().toString());
+    }
+
+    public void showCountResultAlert(String text) {
         AlertDialog.Builder countResultBuilder = new AlertDialog.Builder(MainActivity.this);
         countResultBuilder.setMessage("Write your message here.\n123\n456\n789");
         countResultBuilder.setCancelable(true);
@@ -211,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public int getCount(String inputString, String type) {
-        int returnInt = 0;
+        int returnInt;
 
         switch(type){
             case "Word":
@@ -239,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
         protected Map<String, String> doInBackground(String... inputParas) {
             String text = inputParas[0];
 
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = new HashMap<>();
             map.put("Word", getCountString(text, "Word"));
             map.put("Character", getCountString(text, "Character"));
 
@@ -289,18 +328,16 @@ public class MainActivity extends AppCompatActivity {
                 }};
 
 
-                List<String> chineseCharResultList = new ArrayList<String>();
+                List<String> chineseCharResultList = new ArrayList<>();
 
                 for (char c : eachWord.toCharArray()) {
                     if (chineseUnicodeBlocks.contains(Character.UnicodeBlock.of(c))) {
                         //Log.e(TAG, c + " is chinese");
                         chineseCharResultList.add(String.valueOf(c));
-                    } else {
-                        //Log.e(TAG, c + " is not chinese");
                     }
                 }
 
-                List<String> eachWordCharList = new ArrayList<String>(Arrays.asList(eachWord.split("")));
+                List<String> eachWordCharList = new ArrayList<>(Arrays.asList(eachWord.split("")));
                 eachWordCharList.remove(0);
 
 

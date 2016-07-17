@@ -32,11 +32,13 @@ public class AboutActivity extends AppCompatPreferenceActivity
     private void setupActionBar() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
+            // http://stackoverflow.com/q/12070744/2603230
             // Show the Up button in the action bar.
             actionBar.setHomeButtonEnabled(true);
         }
     }
 
+    // http://stackoverflow.com/q/12070744/2603230
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
