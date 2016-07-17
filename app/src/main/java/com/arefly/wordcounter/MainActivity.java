@@ -3,6 +3,7 @@ package com.arefly.wordcounter;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button wordBtn;
     private Button charBtn;
+    private Button sentBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +86,18 @@ public class MainActivity extends AppCompatActivity {
         unitStringData.put("Sentence.Singular", getString(R.string.unit_sentence_singular));
         unitStringData.put("Sentence.Plural", getString(R.string.unit_sentence_plural));
 
+        unitStringData.put("Sentence.Short.Singular", getString(R.string.unit_short_sentence_singular));
+        unitStringData.put("Sentence.Short.Plural", getString(R.string.unit_short_sentence_plural));
+
 
 
         wordBtn = (Button) findViewById(R.id.id_button_word);
         charBtn = (Button) findViewById(R.id.id_button_char);
+        sentBtn = (Button) findViewById(R.id.id_button_sent);
 
         wordBtn.setText(getCountString("", "Word"));
         charBtn.setText(getCountString("", "Character"));
+        sentBtn.setText(getCountString("", "Sentence"));
 
 
         mainEditText = (EditText) findViewById(R.id.id_main_edit_text);
@@ -261,10 +268,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             /*case "Paragraph":
                 returnInt = paragraphCount(inputString);
-                break;
+                break;*/
             case "Sentence":
                 returnInt = sentenceCount(inputString);
-                break;*/
+                break;
             default:
                 returnInt = 0;
         }
@@ -281,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
             Map<String, String> map = new HashMap<>();
             map.put("Word", getCountString(text, "Word"));
             map.put("Character", getCountString(text, "Character"));
+            map.put("Sentence", getCountString(text, "Sentence"));
 
             return map;
         }
@@ -289,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Map<String, String> result) {
             wordBtn.setText(result.get("Word"));
             charBtn.setText(result.get("Character"));
+            sentBtn.setText(result.get("Sentence"));
         }
 
     }
@@ -380,6 +389,29 @@ public class MainActivity extends AppCompatActivity {
         String stringToBeCount = inputString.replace(" ", "").replace("\n", "");
 
         return stringToBeCount.length();
+    }
+
+    public int sentenceCount(String inputString) {
+
+        // 因iOS版本使用的是iOS自帶函數,需要重新使用regex來計算句數
+
+
+        // http://stackoverflow.com/a/34247755/2603230
+        String lines[] = inputString.replaceAll("((?<=[.?!;…])\\s+|(?<=[。！？；…])\\s*)(?=[\\p{L}\\p{N}])", "[*-SENTENCE-*]").split("(\\[\\*-SENTENCE-\\*\\])");
+        for (int i = 0; i < lines.length; i++) {
+            lines[i] = lines[i].trim();
+        }
+
+        //Log.e(TAG, Arrays.toString(lines));
+
+        List<String> linesList = new ArrayList<>(Arrays.asList(lines));
+        linesList.removeAll(Collections.singleton(null));
+        linesList.removeAll(Collections.singleton(""));
+
+        //Log.e(TAG, ""+linesList.size());
+
+        return linesList.size();
+
     }
 
 
