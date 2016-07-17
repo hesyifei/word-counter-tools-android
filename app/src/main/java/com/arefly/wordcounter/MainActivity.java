@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_about:
                 Log.i(TAG, "About Action Clicked");
                 Intent aboutIntent = new Intent(this, AboutActivity.class);
-                aboutIntent.putExtra( AboutActivity.EXTRA_SHOW_FRAGMENT, AboutFragment.class.getName() );
+                aboutIntent.putExtra( AboutActivity.EXTRA_SHOW_FRAGMENT, AboutActivity.AboutFragment.class.getName() );
                 aboutIntent.putExtra( AboutActivity.EXTRA_NO_HEADERS, true );
                 startActivity(aboutIntent);
                 return true;
