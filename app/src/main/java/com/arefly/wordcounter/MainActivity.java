@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
             }
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyUp(keyCode, event);
     }
 
 
@@ -186,7 +187,11 @@ public class MainActivity extends AppCompatActivity {
         int duration = Toast.LENGTH_LONG;
 
         Toast toast = Toast.makeText(context, text, duration);
-        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            toast.setGravity(Gravity.TOP | Gravity.RIGHT, 20, 20);
+        } else {
+            toast.setGravity(Gravity.TOP | Gravity.RIGHT, 0, 0);
+        }
         toast.show();
     }
 
