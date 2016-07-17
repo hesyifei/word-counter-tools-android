@@ -4,7 +4,7 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="com.arefly.wordcounter.AboutFragment"
-        android:title="test" />
+        android:fragment="com.arefly.wordcounter.AboutActivity$AboutFragment"
+        android:title="@string/about_activity_name" />
 
 </preference-headers>

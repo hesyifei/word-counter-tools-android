@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="pref_sms_storage_title"
-        android:key="pref_key_storage_settings">
+        android:title="@string/about_section_name">
         <Preference
-            android:key="pref_key_sms_delete_limit"
-            android:summary="pref_summary_delete_limit"
-            android:title="pref_title_sms_delete">
+            android:key="developer"
+            android:title="@string/about_developer"
+            android:summary="@string/about_developer_summary">
+        </Preference>
+        <Preference
+            android:key="developer_email"
+            android:title="@string/about_developer_email"
+            android:summary="@string/about_developer_email_summary">
             <intent android:action="android.intent.action.VIEW"
-                android:data="http://www.example.com" />
+                android:data="mailto:eflyjason@gmail.com" />
+        </Preference>
+        <Preference
+            android:key="developer_url"
+            android:title="@string/about_developer_url"
+            android:summary="@string/about_developer_url_summary">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="http://www.arefly.com/" />
+        </Preference>
+        <Preference
+            android:key="version_info"
+            android:title="Version XX"
+            android:summary="Build XX">
         </Preference>
     </PreferenceCategory>
 </PreferenceScreen>
