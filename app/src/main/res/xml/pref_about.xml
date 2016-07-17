@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory
-        android:title="@string/about_section_name">
+    <PreferenceCategory android:title="@string/about_section_name">
         <Preference
             android:key="developer"
-            android:title="@string/about_developer"
-            android:summary="@string/about_developer_summary">
-        </Preference>
+            android:summary="@string/about_developer_summary"
+            android:title="@string/about_developer" />
         <Preference
             android:key="developer_email"
-            android:title="@string/about_developer_email"
-            android:summary="@string/about_developer_email_summary">
-            <intent android:action="android.intent.action.VIEW"
+            android:summary="@string/about_developer_email_summary"
+            android:title="@string/about_developer_email">
+            <intent
+                android:action="android.intent.action.VIEW"
                 android:data="mailto:eflyjason@gmail.com" />
         </Preference>
         <Preference
             android:key="developer_url"
-            android:title="@string/about_developer_url"
-            android:summary="@string/about_developer_url_summary">
-            <intent android:action="android.intent.action.VIEW"
+            android:summary="@string/about_developer_url_summary"
+            android:title="@string/about_developer_url">
+            <intent
+                android:action="android.intent.action.VIEW"
                 android:data="http://www.arefly.com/" />
         </Preference>
         <Preference
             android:key="version_info"
-            android:title="Version XX"
-            android:summary="Build XX">
-        </Preference>
+            android:summary="Build XX"
+            android:title="Version XX" />
     </PreferenceCategory>
 </PreferenceScreen>

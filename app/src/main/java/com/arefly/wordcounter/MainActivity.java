@@ -1,6 +1,5 @@
 package com.arefly.wordcounter;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,17 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +21,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
@@ -37,13 +29,12 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private Map<String, String> unitStringData = new HashMap<>();
+    private final Map<String, String> unitStringData = new HashMap<>();
 
     private Toolbar topToolbar;
     private EditText mainEditText;
@@ -68,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(topToolbar);
 
 
-
         unitStringData.put("Word.Singular", getString(R.string.unit_word_singular));
         unitStringData.put("Word.Plural", getString(R.string.unit_word_plural));
         unitStringData.put("Word.Short.Singular", getString(R.string.unit_short_word_singular));
@@ -89,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
         unitStringData.put("Sentence.Short.Singular", getString(R.string.unit_short_sentence_singular));
         unitStringData.put("Sentence.Short.Plural", getString(R.string.unit_short_sentence_plural));
-
 
 
         wordBtn = (Button) findViewById(R.id.id_button_word);
@@ -115,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String text = s.toString().trim();
 
-                if(asyncTask != null) {
+                if (asyncTask != null) {
                     asyncTask.cancel(true);
                     //Log.e(TAG, "noyes"+asyncTask.getStatus());
                 }
@@ -141,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
     // 當物理按鈕按下並鬆開(up)後
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
-        if(event.getAction() == KeyEvent.ACTION_UP){
-            switch(keyCode) {
+        if (event.getAction() == KeyEvent.ACTION_UP) {
+            switch (keyCode) {
                 case KeyEvent.KEYCODE_MENU:
                     Log.i(TAG, "Menu Button Clicked");
                     // 直接顯示頂部Toolbar的Menu
@@ -209,8 +198,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "About Action Clicked");
                 Intent aboutIntent = new Intent(this, AboutActivity.class);
                 // http://stackoverflow.com/a/10960720/2603230
-                aboutIntent.putExtra( AboutActivity.EXTRA_SHOW_FRAGMENT, AboutActivity.AboutFragment.class.getName() );
-                aboutIntent.putExtra( AboutActivity.EXTRA_NO_HEADERS, true );
+                aboutIntent.putExtra(AboutActivity.EXTRA_SHOW_FRAGMENT, AboutActivity.AboutFragment.class.getName());
+                aboutIntent.putExtra(AboutActivity.EXTRA_NO_HEADERS, true);
                 startActivity(aboutIntent);
                 return true;
         }
@@ -219,14 +208,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     public void hideKeyboard() {
         // Check if no view has focus:
         View currentFocusView = this.getCurrentFocus();
         // 隱藏軟鍵盤
         if (currentFocusView != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(currentFocusView.getWindowToken(), 0);
         }
     }
@@ -255,14 +242,14 @@ public class MainActivity extends AppCompatActivity {
 
     public String getCountString(String inputString, String type) {
         int count = getCount(inputString, type);
-        String unitString = (count == 1) ? unitStringData.get(type+".Short.Singular") : unitStringData.get(type+".Short.Plural");
-        return count+" "+unitString;
+        String unitString = (count == 1) ? unitStringData.get(type + ".Short.Singular") : unitStringData.get(type + ".Short.Plural");
+        return count + " " + unitString;
     }
 
     public int getCount(String inputString, String type) {
         int returnInt;
 
-        switch(type){
+        switch (type) {
             case "Word":
                 returnInt = wordCount(inputString);
                 break;
@@ -308,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public int wordCount(String inputString) {
+    private int wordCount(String inputString) {
 
         // 代碼邏輯來自於iOS版本的字數統計工具
 
@@ -318,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
         //Log.e(TAG, "NO:"+joinedString);
         String words[] = joinedString.split("\\s+");
         //Log.e(TAG, "YES:"+TextUtils.join(",", words));
-        for (String eachWord: words) {
+        for (String eachWord : words) {
             eachWord = eachWord.trim();
 
             if (TextUtils.isEmpty(eachWord)) {
@@ -367,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
                     //Log.e(TAG, "0 FALSE");
                 }
 
-                if (!eachWordCharList.get(eachWordCharList.size()-1).equals(chineseCharResultList.get(chineseCharResultList.size()-1))) {
+                if (!eachWordCharList.get(eachWordCharList.size() - 1).equals(chineseCharResultList.get(chineseCharResultList.size() - 1))) {
                     counts += 1;
                     //Log.e(TAG, "last FALSE");
                 }
@@ -385,18 +372,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public int characterCount(String inputString) {
+    private int characterCount(String inputString) {
 
         // 代碼邏輯來自於iOS版本的字數統計工具
-
-        int characterCounts = 0;
 
         String stringToBeCount = inputString.replace(" ", "").replace("\n", "");
 
         return stringToBeCount.length();
     }
 
-    public int sentenceCount(String inputString) {
+    private int sentenceCount(String inputString) {
 
         // 因iOS版本使用的是iOS自帶函數,需要重新使用regex來計算句數
 
@@ -419,14 +404,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public int paragraphCount(String inputString) {
+    private int paragraphCount(String inputString) {
         // 代碼邏輯來自於iOS版本的字數統計工具
 
         String paras[] = inputString.split("\\r?\\n");
 
         List<String> parasList = new ArrayList<>();
 
-        for (String eachPara: paras) {
+        for (String eachPara : paras) {
             eachPara = eachPara.trim();
 
             if (TextUtils.isEmpty(eachPara)) {
@@ -440,20 +425,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public static boolean isCJK(String str){
+    public static boolean isCJK(String str) {
         int length = str.length();
-        for (int i = 0; i < length; i++){
+        for (int i = 0; i < length; i++) {
             char ch = str.charAt(i);
             Character.UnicodeBlock block = Character.UnicodeBlock.of(ch);
-            if (Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS.equals(block)||
-                    Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block)||
-                    Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A.equals(block)){
+            if (Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS.equals(block) ||
+                    Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block) ||
+                    Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A.equals(block)) {
                 return true;
             }
         }
         return false;
     }
-
 
 
 }

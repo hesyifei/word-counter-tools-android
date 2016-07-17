@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -31,76 +30,77 @@
         android:paddingTop="4dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <EditText android:id="@+id/id_main_edit_text"
+        <EditText
+            android:id="@+id/id_main_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="42dp"
-            android:scrollbars="vertical"
+            android:hint="@string/placeholder_please_input_text"
             android:imeOptions="flagNoFullscreen"
             android:inputType="textMultiLine"
-            android:hint="@string/placeholder_please_input_text" />
+            android:scrollbars="vertical" />
 
     </RelativeLayout>
 
     <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_gravity="bottom"
-        android:layout_height="42dp"
         android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_gravity="bottom"
         android:layout_marginLeft="-16dp"
         android:layout_marginStart="-16dp"
-        android:scrollbars="none"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:scrollbars="none">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/id_toolbar_bottom"
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
+            android:background="@color/colorAccent"
+            android:orientation="horizontal"
             android:paddingEnd="8dp"
-            android:paddingRight="8dp"
-            android:background="@color/colorAccent">
+            android:paddingRight="8dp">
 
             <Button
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textColor="@color/colorWhiteText"
                 android:id="@+id/id_button_word"
-                android:text=""
-                android:onClick="countResultButtonAction"
-                android:layout_gravity="start"
-                />
-            <Button
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="@color/colorWhiteText"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:onClick="countResultButtonAction"
+                android:text=""
+                android:textColor="@color/colorWhiteText" />
+
+            <Button
                 android:id="@+id/id_button_char"
-                android:text=""
-                android:onClick="countResultButtonAction"
-                android:layout_gravity="start"
-                />
-            <Button
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="@color/colorWhiteText"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:onClick="countResultButtonAction"
+                android:text=""
+                android:textColor="@color/colorWhiteText" />
+
+            <Button
                 android:id="@+id/id_button_sent"
-                android:text=""
-                android:onClick="countResultButtonAction"
-                android:layout_gravity="start"
-                />
-            <Button
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="@color/colorWhiteText"
-                android:id="@+id/id_button_para"
-                android:text=""
-                android:onClick="countResultButtonAction"
+                android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                />
+                android:onClick="countResultButtonAction"
+                android:text=""
+                android:textColor="@color/colorWhiteText" />
+
+            <Button
+                android:id="@+id/id_button_para"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:onClick="countResultButtonAction"
+                android:text=""
+                android:textColor="@color/colorWhiteText" />
 
         </android.support.v7.widget.Toolbar>
     </HorizontalScrollView>

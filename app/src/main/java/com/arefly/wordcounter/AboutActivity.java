@@ -9,8 +9,7 @@ import android.view.MenuItem;
 
 import java.util.List;
 
-public class AboutActivity extends AppCompatPreferenceActivity
-{
+public class AboutActivity extends AppCompatPreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
