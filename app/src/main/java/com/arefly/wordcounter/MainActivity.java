@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -159,10 +160,14 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_about) {
-            Log.i(TAG, "About Action Clicked");
-            return true;
+        switch (id) {
+            case R.id.action_about:
+                Log.i(TAG, "About Action Clicked");
+                Intent aboutIntent = new Intent(this, AboutActivity.class);
+                aboutIntent.putExtra( AboutActivity.EXTRA_SHOW_FRAGMENT, AboutFragment.class.getName() );
+                aboutIntent.putExtra( AboutActivity.EXTRA_NO_HEADERS, true );
+                startActivity(aboutIntent);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
