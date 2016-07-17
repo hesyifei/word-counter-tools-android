@@ -1,6 +1,8 @@
 package com.arefly.wordcounter;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
@@ -59,6 +61,11 @@ public class AboutActivity extends AppCompatPreferenceActivity
 
             // Load the preferences from an XML resource
             addPreferencesFromResource(R.xml.pref_about);
+
+            SharedPreferences sp = getPreferenceScreen().getSharedPreferences();
+            Preference appVersionInfoPref = findPreference("version_info");
+            appVersionInfoPref.setTitle(String.format(getString(R.string.about_app_version_info), BuildConfig.VERSION_NAME));
+            appVersionInfoPref.setSummary(String.format(getString(R.string.about_app_version_info_summary), BuildConfig.VERSION_CODE));
         }
     }
 }

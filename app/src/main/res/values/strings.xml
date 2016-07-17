@@ -65,4 +65,7 @@
     <string name="about_developer_url">http://www.arefly.com/</string>
     <string name="about_developer_url_summary">Website</string>
 
+    <string name="about_app_version_info">Version %s</string>
+    <string name="about_app_version_info_summary">Build %d</string>
+
 </resources>
