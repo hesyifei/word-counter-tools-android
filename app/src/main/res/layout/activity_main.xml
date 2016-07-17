@@ -83,6 +83,17 @@
             android:layout_gravity="start"
             />
 
+        <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorWhiteText"
+            android:id="@+id/id_button_para"
+            android:text=""
+            android:onClick="countResultButtonAction"
+            android:layout_gravity="start"
+            />
+
     </android.support.v7.widget.Toolbar>
 
 </android.support.design.widget.CoordinatorLayout>

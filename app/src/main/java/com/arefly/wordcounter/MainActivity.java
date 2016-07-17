@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private Button wordBtn;
     private Button charBtn;
     private Button sentBtn;
+    private Button paraBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +95,12 @@ public class MainActivity extends AppCompatActivity {
         wordBtn = (Button) findViewById(R.id.id_button_word);
         charBtn = (Button) findViewById(R.id.id_button_char);
         sentBtn = (Button) findViewById(R.id.id_button_sent);
+        paraBtn = (Button) findViewById(R.id.id_button_para);
 
         wordBtn.setText(getCountString("", "Word"));
         charBtn.setText(getCountString("", "Character"));
         sentBtn.setText(getCountString("", "Sentence"));
+        paraBtn.setText(getCountString("", "Paragraph"));
 
 
         mainEditText = (EditText) findViewById(R.id.id_main_edit_text);
@@ -266,11 +269,11 @@ public class MainActivity extends AppCompatActivity {
             case "Character":
                 returnInt = characterCount(inputString);
                 break;
-            /*case "Paragraph":
-                returnInt = paragraphCount(inputString);
-                break;*/
             case "Sentence":
                 returnInt = sentenceCount(inputString);
+                break;
+            case "Paragraph":
+                returnInt = paragraphCount(inputString);
                 break;
             default:
                 returnInt = 0;
@@ -289,6 +292,7 @@ public class MainActivity extends AppCompatActivity {
             map.put("Word", getCountString(text, "Word"));
             map.put("Character", getCountString(text, "Character"));
             map.put("Sentence", getCountString(text, "Sentence"));
+            map.put("Paragraph", getCountString(text, "Paragraph"));
 
             return map;
         }
@@ -298,6 +302,7 @@ public class MainActivity extends AppCompatActivity {
             wordBtn.setText(result.get("Word"));
             charBtn.setText(result.get("Character"));
             sentBtn.setText(result.get("Sentence"));
+            paraBtn.setText(result.get("Paragraph"));
         }
 
     }
@@ -397,21 +402,41 @@ public class MainActivity extends AppCompatActivity {
 
 
         // http://stackoverflow.com/a/34247755/2603230
-        String lines[] = inputString.replaceAll("((?<=[.?!;…])\\s+|(?<=[。！？；…])\\s*)(?=[\\p{L}\\p{N}])", "[*-SENTENCE-*]").split("(\\[\\*-SENTENCE-\\*\\])");
-        for (int i = 0; i < lines.length; i++) {
-            lines[i] = lines[i].trim();
+        String sents[] = inputString.replaceAll("((?<=[.?!;…])\\s+|(?<=[。！？；…])\\s*)(?=[\\p{L}\\p{N}])", "[*-SENTENCE-*]").split("(\\[\\*-SENTENCE-\\*\\])");
+        for (int i = 0; i < sents.length; i++) {
+            sents[i] = sents[i].trim();
         }
 
-        //Log.e(TAG, Arrays.toString(lines));
+        //Log.e(TAG, Arrays.toString(sents));
 
-        List<String> linesList = new ArrayList<>(Arrays.asList(lines));
-        linesList.removeAll(Collections.singleton(null));
-        linesList.removeAll(Collections.singleton(""));
+        List<String> sentsList = new ArrayList<>(Arrays.asList(sents));
+        sentsList.removeAll(Collections.singleton(null));
+        sentsList.removeAll(Collections.singleton(""));
 
-        //Log.e(TAG, ""+linesList.size());
+        //Log.e(TAG, ""+sentsList.size());
 
-        return linesList.size();
+        return sentsList.size();
 
+    }
+
+    public int paragraphCount(String inputString) {
+        // 代碼邏輯來自於iOS版本的字數統計工具
+
+        String paras[] = inputString.split("\\r?\\n");
+
+        List<String> parasList = new ArrayList<>();
+
+        for (String eachPara: paras) {
+            eachPara = eachPara.trim();
+
+            if (TextUtils.isEmpty(eachPara)) {
+                continue;
+            }
+
+            parasList.add(eachPara);
+        }
+
+        return parasList.size();
     }
 
 
