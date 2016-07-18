@@ -63,8 +63,8 @@ public class AboutActivity extends AppCompatPreferenceActivity {
 
             SharedPreferences sp = getPreferenceScreen().getSharedPreferences();
             Preference appVersionInfoPref = findPreference("version_info");
-            appVersionInfoPref.setTitle(String.format(getString(R.string.about_app_version_info), BuildConfig.VERSION_NAME));
-            appVersionInfoPref.setSummary(String.format(getString(R.string.about_app_version_info_summary), BuildConfig.VERSION_CODE));
+            appVersionInfoPref.setTitle(getString(R.string.about_app_version_info, BuildConfig.VERSION_NAME));
+            appVersionInfoPref.setSummary(getString(R.string.about_app_version_info_summary, BuildConfig.VERSION_CODE));
         }
     }
 }

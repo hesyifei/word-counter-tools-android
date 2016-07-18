@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -86,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
         sentBtn = (Button) findViewById(R.id.id_button_sent);
         paraBtn = (Button) findViewById(R.id.id_button_para);
 
-        wordBtn.setText(getCountString("", "Word"));
-        charBtn.setText(getCountString("", "Character"));
-        sentBtn.setText(getCountString("", "Sentence"));
-        paraBtn.setText(getCountString("", "Paragraph"));
+        wordBtn.setText(getCountShortString("", "Word"));
+        charBtn.setText(getCountShortString("", "Character"));
+        sentBtn.setText(getCountShortString("", "Sentence"));
+        paraBtn.setText(getCountShortString("", "Paragraph"));
 
 
         mainEditText = (EditText) findViewById(R.id.id_main_edit_text);
@@ -223,26 +224,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showCountResultAlert(String text) {
-        AlertDialog.Builder countResultBuilder = new AlertDialog.Builder(MainActivity.this);
-        countResultBuilder.setMessage("Write your message here.\n123\n456\n789");
-        countResultBuilder.setCancelable(true);
+        String textToBeCount = text.trim();
 
-        countResultBuilder.setNeutralButton(
-                "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog countResultAlert = countResultBuilder.create();
-        countResultAlert.show();
+        new AlertCountWordsAsyncTask().execute(textToBeCount);
     }
 
 
     public String getCountString(String inputString, String type) {
+        return getCountString(inputString, type, "");
+    }
+    public String getCountShortString(String inputString, String type) {
+        return getCountString(inputString, type, ".Short");
+    }
+    public String getCountString(String inputString, String type, String prefix) {
         int count = getCount(inputString, type);
-        String unitString = (count == 1) ? unitStringData.get(type + ".Short.Singular") : unitStringData.get(type + ".Short.Plural");
+        String unitString = (count == 1) ? unitStringData.get(type + prefix + ".Singular") : unitStringData.get(type + prefix + ".Plural");
         return count + " " + unitString;
     }
 
@@ -276,10 +272,10 @@ public class MainActivity extends AppCompatActivity {
             String text = inputParas[0];
 
             Map<String, String> map = new HashMap<>();
-            map.put("Word", getCountString(text, "Word"));
-            map.put("Character", getCountString(text, "Character"));
-            map.put("Sentence", getCountString(text, "Sentence"));
-            map.put("Paragraph", getCountString(text, "Paragraph"));
+            map.put("Word", getCountShortString(text, "Word"));
+            map.put("Character", getCountShortString(text, "Character"));
+            map.put("Sentence", getCountShortString(text, "Sentence"));
+            map.put("Paragraph", getCountShortString(text, "Paragraph"));
 
             return map;
         }
@@ -290,6 +286,62 @@ public class MainActivity extends AppCompatActivity {
             charBtn.setText(result.get("Character"));
             sentBtn.setText(result.get("Sentence"));
             paraBtn.setText(result.get("Paragraph"));
+        }
+
+    }
+
+    class AlertCountWordsAsyncTask extends AsyncTask<String, Void, Map<String, String>> {
+
+        private ProgressDialog loadingProgressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            loadingProgressDialog = new ProgressDialog(MainActivity.this);
+            loadingProgressDialog.setCancelable(false);
+            loadingProgressDialog.setMessage(getString(R.string.progress_dialog_counting));
+            loadingProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+            loadingProgressDialog.show();
+        }
+
+
+        @Override
+        protected Map<String, String> doInBackground(String... inputParas) {
+            String text = inputParas[0];
+
+            Map<String, String> map = new HashMap<>();
+            map.put("Word", getCountString(text, "Word"));
+            map.put("Character", getCountString(text, "Character"));
+            map.put("Sentence", getCountString(text, "Sentence"));
+            map.put("Paragraph", getCountString(text, "Paragraph"));
+
+            return map;
+        }
+
+        @Override
+        protected void onPostExecute(Map<String, String> result) {
+
+            loadingProgressDialog.hide();
+
+
+            AlertDialog.Builder countResultBuilder = new AlertDialog.Builder(MainActivity.this);
+            countResultBuilder.setTitle(getString(R.string.alert_counter_title));
+            countResultBuilder.setMessage(getString(R.string.alert_counter_message, result.get("Word"), result.get("Character"), result.get("Sentence"), result.get("Paragraph")));
+            countResultBuilder.setCancelable(true);
+
+            countResultBuilder.setNeutralButton(
+                    getString(R.string.alert_button_ok),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog countResultAlert = countResultBuilder.create();
+            countResultAlert.show();
+
         }
 
     }

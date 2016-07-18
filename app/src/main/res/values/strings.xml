@@ -13,7 +13,20 @@
     <string name="id_button_para">Paragraph Button ID</string>
 
 
+    <string name="alert_button_ok">OK</string>
+    <string name="alert_button_done">Done</string>
+
+
+
     <string name="placeholder_please_input_text">Type or paste here&#8230;</string>
+
+    <string name="progress_dialog_counting">Counting&#8230;</string>
+
+
+    <string name="alert_counter_title">Counter</string>
+    <string name="alert_counter_message">Words: %1$s\nCharacters: %2$s\nSentences: %3$s\nParagraphs: %4$s</string>
+
+
 
 
     <string name="unit_word_singular">word</string>
@@ -28,17 +41,18 @@
     <string name="unit_short_character_singular">char.</string>
     <string name="unit_short_character_plural">chars.</string>
 
+    <string name="unit_sentence_singular">sentence</string>
+    <string name="unit_sentence_plural">sentences</string>
+
+    <string name="unit_short_sentence_singular">sent.</string>
+    <string name="unit_short_sentence_plural">sents.</string>
+
     <string name="unit_paragraph_singular">paragraph</string>
     <string name="unit_paragraph_plural">paragraphs</string>
 
     <string name="unit_short_paragraph_singular">para.</string>
     <string name="unit_short_paragraph_plural">paras.</string>
 
-    <string name="unit_sentence_singular">sentence</string>
-    <string name="unit_sentence_plural">sentences</string>
-
-    <string name="unit_short_sentence_singular">sent.</string>
-    <string name="unit_short_sentence_plural">sents.</string>
 
 
     <string name="alert_before_clear_title">Clear all content?</string>
