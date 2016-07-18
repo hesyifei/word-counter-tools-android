@@ -327,7 +327,6 @@ public class MainActivity extends AppCompatActivity {
 
 
             AlertDialog.Builder countResultBuilder = new AlertDialog.Builder(MainActivity.this);
-            countResultBuilder.setTitle(getString(R.string.alert_counter_title));
             countResultBuilder.setMessage(getString(R.string.alert_counter_message, result.get("Word"), result.get("Character"), result.get("Sentence"), result.get("Paragraph")));
             countResultBuilder.setCancelable(true);
 

@@ -23,7 +23,6 @@
     <string name="progress_dialog_counting">Counting&#8230;</string>
 
 
-    <string name="alert_counter_title">Counter</string>
     <string name="alert_counter_message">Words: %1$s\nCharacters: %2$s\nSentences: %3$s\nParagraphs: %4$s</string>
 
 
