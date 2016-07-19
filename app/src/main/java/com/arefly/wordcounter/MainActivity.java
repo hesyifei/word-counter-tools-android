@@ -50,10 +50,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate");
+        //Log.i(TAG, "onCreate");
         setContentView(R.layout.activity_main);
 
 
+        // http://stackoverflow.com/q/3488664/2603230
         this.setTitle(getString(R.string.main_activity_name));
 
 
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i(TAG, "onPause");
+        //Log.i(TAG, "onPause");
 
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         if (event.getAction() == KeyEvent.ACTION_UP) {
             switch (keyCode) {
                 case KeyEvent.KEYCODE_MENU:
-                    Log.i(TAG, "Menu Button Clicked");
+                    //Log.i(TAG, "Menu Button Clicked");
                     // 直接顯示頂部Toolbar的Menu
                     topToolbar.showOverflowMenu();
                     // 不顯示默認Menu Panel
@@ -190,13 +191,13 @@ public class MainActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_count:
-                Log.i(TAG, "Count Action Clicked");
+                //Log.i(TAG, "Count Action Clicked");
 
                 showCountResultAlert(mainEditText.getText().toString());
 
                 return true;
             case R.id.action_clear:
-                Log.i(TAG, "Clear Action Clicked");
+                //Log.i(TAG, "Clear Action Clicked");
 
                 AlertDialog.Builder clearContentBuilder = new AlertDialog.Builder(MainActivity.this);
                 clearContentBuilder.setTitle(getString(R.string.alert_before_clear_title));
@@ -226,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.action_about:
-                Log.i(TAG, "About Action Clicked");
+                //Log.i(TAG, "About Action Clicked");
                 Intent aboutIntent = new Intent(this, AboutActivity.class);
                 // http://stackoverflow.com/a/10960720/2603230
                 aboutIntent.putExtra(AboutActivity.EXTRA_SHOW_FRAGMENT, AboutActivity.AboutFragment.class.getName());
