@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "onCreate");
         setContentView(R.layout.activity_main);
 
+
+        this.setTitle(getString(R.string.main_activity_name));
+
+
         // 設定「軟鍵盤出現後自動Resize界面」
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 

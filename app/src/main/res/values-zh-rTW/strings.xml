@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">字數統計工具</string>
+    <string name="app_name">字數統計</string>
+
+    <string name="main_activity_name">字數統計工具</string>
     <string name="about_activity_name">關於</string>
 
     <string name="alert_button_ok">好！</string>

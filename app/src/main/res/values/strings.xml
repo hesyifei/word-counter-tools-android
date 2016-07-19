@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Word Counter</string>
+
+    <string name="main_activity_name">Word Counter Tools</string>
     <string name="about_activity_name">About</string>
 
     <string name="alert_button_ok">OK</string>
