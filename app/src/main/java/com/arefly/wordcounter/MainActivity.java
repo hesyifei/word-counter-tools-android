@@ -13,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate");
         setContentView(R.layout.activity_main);
 
         // 設定「軟鍵盤出現後自動Resize界面」
@@ -95,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
 
         mainEditText = (EditText) findViewById(R.id.id_main_edit_text);
 
+        if (TextUtils.isEmpty(mainEditText.getText().toString())) {
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            mainEditText.setText(sharedPref.getString(getString(R.string.saved_string_on_pause), ""));
+        }
+
         mainEditText.addTextChangedListener(new TextWatcher() {
 
             private CountWordsAsyncTask asyncTask;
@@ -125,6 +132,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG, "onPause");
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.saved_string_on_pause), mainEditText.getText().toString());
+        editor.commit();
     }
 
 
@@ -233,9 +251,11 @@ public class MainActivity extends AppCompatActivity {
     public String getCountString(String inputString, String type) {
         return getCountString(inputString, type, "");
     }
+
     public String getCountShortString(String inputString, String type) {
         return getCountString(inputString, type, ".Short");
     }
+
     public String getCountString(String inputString, String type, String prefix) {
         int count = getCount(inputString, type);
         String unitString = (count == 1) ? unitStringData.get(type + prefix + ".Singular") : unitStringData.get(type + prefix + ".Plural");

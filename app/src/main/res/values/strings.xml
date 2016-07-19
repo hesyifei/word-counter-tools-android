@@ -80,4 +80,9 @@
     <string name="about_app_version_info">Version %s</string>
     <string name="about_app_version_info_summary">Build %d</string>
 
+
+
+
+    <string name="saved_string_on_pause">String.On.Pause</string>
+
 </resources>
