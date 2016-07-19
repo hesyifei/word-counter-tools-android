@@ -63,13 +63,15 @@ public class AboutActivity extends AppCompatPreferenceActivity {
             addPreferencesFromResource(R.xml.pref_about);
 
             SharedPreferences sp = getPreferenceScreen().getSharedPreferences();
+
+
             Preference appVersionInfoPref = findPreference("version_info");
             appVersionInfoPref.setTitle(getString(R.string.about_app_version_info, BuildConfig.VERSION_NAME));
             appVersionInfoPref.setSummary(getString(R.string.about_app_version_info_summary, BuildConfig.VERSION_CODE));
 
 
-            Preference myPref = findPreference("share_app");
-            myPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            /*Preference shareAppPref = findPreference("share_app");
+            shareAppPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference preference) {
                     Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                     sharingIntent.setType("text/plain");
@@ -77,7 +79,7 @@ public class AboutActivity extends AppCompatPreferenceActivity {
                     startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_app_intent_title)));
                     return true;
                 }
-            });
+            });*/
 
         }
     }
