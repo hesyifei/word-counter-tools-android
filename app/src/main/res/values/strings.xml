@@ -68,6 +68,10 @@
 
     <string name="about_section_name">About</string>
 
+    <string name="share_app">Share Word Counter Tools!</string>
+    <string name="share_app_intent_title">Share via</string>
+    <string name="share_app_extra_text">Hi! Still counting words one by one? Get Word Counter Tools on Google Play today!\n\n%s</string>
+
     <string name="about_developer">Jason Ho</string>
     <string name="about_developer_summary">Developer</string>
 

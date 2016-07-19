@@ -1,5 +1,6 @@
 package com.arefly.wordcounter;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -65,6 +66,20 @@ public class AboutActivity extends AppCompatPreferenceActivity {
             Preference appVersionInfoPref = findPreference("version_info");
             appVersionInfoPref.setTitle(getString(R.string.about_app_version_info, BuildConfig.VERSION_NAME));
             appVersionInfoPref.setSummary(getString(R.string.about_app_version_info_summary, BuildConfig.VERSION_CODE));
+
+
+            Preference myPref = findPreference("share_app");
+            myPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    sharingIntent.setType("text/plain");
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.share_app_extra_text, Constants.PLAY_STORE_URL));
+                    startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_app_intent_title)));
+                    return true;
+                }
+            });
+
         }
     }
+
 }
