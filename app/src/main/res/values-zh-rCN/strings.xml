@@ -76,4 +76,7 @@
     <string name="about_app_version_info">版本 %s</string>
     <string name="about_app_version_info_summary">版本号 %d</string>
 
+
+    <string name="saved_string_on_pause">String.On.Pause</string>
+
 </resources>
