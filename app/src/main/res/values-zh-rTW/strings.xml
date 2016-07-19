@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">字數統計工具</string>
+    <string name="about_activity_name">關於</string>
+
+    <string name="alert_button_ok">好！</string>
+    <string name="alert_button_done">完成</string>
+
+
+    <string name="action_count">統計字數&#8230;</string>
+    <string name="action_clear">清空</string>
+    <string name="action_about">關於</string>
+
+
+    <string name="placeholder_please_input_text">請在此輸入或粘貼文字&#8230;</string>
+
+
+    <string name="progress_dialog_counting">統計中&#8230;</string>
+
+    <string name="alert_counter_message">字數：%1$s（不包括標點符號）\n字符：%2$s（包括標點符號）\n句數：%3$s\n段落：%4$s</string>
+
+
+    <string name="unit_word_singular">字</string>
+    <string name="unit_word_plural">字</string>
+
+    <string name="unit_short_word_singular">字</string>
+    <string name="unit_short_word_plural">字</string>
+
+    <string name="unit_character_singular">字符</string>
+    <string name="unit_character_plural">字符</string>
+
+    <string name="unit_short_character_singular">字符</string>
+    <string name="unit_short_character_plural">字符</string>
+
+    <string name="unit_sentence_singular">句</string>
+    <string name="unit_sentence_plural">句</string>
+
+    <string name="unit_short_sentence_singular">句</string>
+    <string name="unit_short_sentence_plural">句</string>
+
+    <string name="unit_paragraph_singular">段</string>
+    <string name="unit_paragraph_plural">段</string>
+
+    <string name="unit_short_paragraph_singular">段</string>
+    <string name="unit_short_paragraph_plural">段</string>
+
+
+    <string name="alert_before_clear_title">確認清空所有內容？</string>
+    <string name="alert_before_clear_message">警告：本操作不可逆！</string>
+
+    <string name="alert_before_clear_button_cancel">取消</string>
+    <string name="alert_before_clear_button_clear">清空</string>
+
+
+    <string name="about_section_name">關於</string>
+
+    <string name="share_app">分享本工具！</string>
+    <string name="share_app_intent_title">分享方式：</string>
+    <string name="share_app_extra_text">還在逐字統計字數？快去 Google Play 上看看「字數統計工具」吧！\n\n%s</string>
+
+    <string name="about_developer">何一非（暢想資源）</string>
+    <string name="about_developer_summary">開發人員</string>
+
+    <string name="about_developer_email">eflyjason@gmail.com</string>
+    <string name="about_developer_email_summary">郵箱</string>
+
+    <string name="about_developer_url">http://www.arefly.com/</string>
+    <string name="about_developer_url_summary">網站</string>
+
+    <string name="about_app_version_info">版本 %s</string>
+    <string name="about_app_version_info_summary">版本號 %d</string>
+
+</resources>
