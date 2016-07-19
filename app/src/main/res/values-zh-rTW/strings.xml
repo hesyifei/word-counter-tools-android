@@ -43,6 +43,11 @@
     <string name="unit_short_paragraph_singular">段</string>
     <string name="unit_short_paragraph_plural">段</string>
 
+    <string name="unit_text_word">%1$s個%2$s</string>
+    <string name="unit_text_character">%1$s個%2$s</string>
+    <string name="unit_text_sentence">%1$s%2$s</string>
+    <string name="unit_text_paragraph">%1$s%2$s</string>
+
 
     <string name="alert_before_clear_title">確認清空所有內容？</string>
     <string name="alert_before_clear_message">警告：本操作不可逆！</string>

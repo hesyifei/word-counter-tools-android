@@ -43,6 +43,11 @@
     <string name="unit_short_paragraph_singular">para.</string>
     <string name="unit_short_paragraph_plural">paras.</string>
 
+    <string name="unit_text_word">%1$s %2$s</string>
+    <string name="unit_text_character">%1$s %2$s</string>
+    <string name="unit_text_sentence">%1$s %2$s</string>
+    <string name="unit_text_paragraph">%1$s %2$s</string>
+
 
     <string name="alert_before_clear_title">Clear all content?</string>
     <string name="alert_before_clear_message">WARNING: This action is irreversible!</string>

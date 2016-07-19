@@ -80,9 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
         unitStringData.put("Sentence.Singular", getString(R.string.unit_sentence_singular));
         unitStringData.put("Sentence.Plural", getString(R.string.unit_sentence_plural));
-
         unitStringData.put("Sentence.Short.Singular", getString(R.string.unit_short_sentence_singular));
         unitStringData.put("Sentence.Short.Plural", getString(R.string.unit_short_sentence_plural));
+
+        unitStringData.put("Text.Word", getString(R.string.unit_text_word));
+        unitStringData.put("Text.Character", getString(R.string.unit_text_character));
+        unitStringData.put("Text.Paragraph", getString(R.string.unit_text_paragraph));
+        unitStringData.put("Text.Sentence", getString(R.string.unit_text_sentence));
 
 
         wordBtn = (Button) findViewById(R.id.id_button_word);
@@ -263,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
     public String getCountString(String inputString, String type, String prefix) {
         int count = getCount(inputString, type);
         String unitString = (count == 1) ? unitStringData.get(type + prefix + ".Singular") : unitStringData.get(type + prefix + ".Plural");
-        return count + " " + unitString;
+        return String.format(unitStringData.get("Text." + type), count, unitString);
     }
 
     public int getCount(String inputString, String type) {
