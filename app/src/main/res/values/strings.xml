@@ -2,20 +2,21 @@
     <string name="app_name">Word Counter</string>
     <string name="about_activity_name">About</string>
 
-
     <string name="alert_button_ok">OK</string>
     <string name="alert_button_done">Done</string>
 
 
+    <string name="action_count">Count&#8230;</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_about">About</string>
+
 
     <string name="placeholder_please_input_text">Type or paste here&#8230;</string>
 
+
     <string name="progress_dialog_counting">Counting&#8230;</string>
 
-
     <string name="alert_counter_message">Words: %1$s\nCharacters: %2$s\nSentences: %3$s\nParagraphs: %4$s</string>
-
-
 
 
     <string name="unit_word_singular">word</string>
@@ -43,17 +44,11 @@
     <string name="unit_short_paragraph_plural">paras.</string>
 
 
-
     <string name="alert_before_clear_title">Clear all content?</string>
     <string name="alert_before_clear_message">WARNING: This action is irreversible!</string>
 
     <string name="alert_before_clear_button_cancel">Cancel</string>
     <string name="alert_before_clear_button_clear">Clear</string>
-
-
-    <string name="action_count">Count&#8230;</string>
-    <string name="action_clear">Clear</string>
-    <string name="action_about">About</string>
 
 
     <string name="about_section_name">About</string>
@@ -73,8 +68,6 @@
 
     <string name="about_app_version_info">Version %s</string>
     <string name="about_app_version_info_summary">Build %d</string>
-
-
 
 
     <string name="saved_string_on_pause">String.On.Pause</string>
