@@ -22,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.TextKeyListener;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -139,10 +140,11 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         Log.i(TAG, "onPause");
 
+
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.saved_string_on_pause), mainEditText.getText().toString());
-        editor.commit();
+        editor.apply();
     }
 
 
@@ -197,7 +199,9 @@ public class MainActivity extends AppCompatActivity {
                         getString(R.string.alert_before_clear_button_clear),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                mainEditText.setText("");
+                                if (mainEditText.length() > 0) {
+                                    TextKeyListener.clear((mainEditText).getText());
+                                }
                                 dialog.cancel();
                             }
                         });
@@ -227,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void hideKeyboard() {
+    public void hideSoftKeyboard() {
         // Check if no view has focus:
         View currentFocusView = this.getCurrentFocus();
         // 隱藏軟鍵盤
