@@ -3,16 +3,6 @@
     <string name="about_activity_name">About</string>
 
 
-    <string name="id_main_edit_text">Main Edit Text ID</string>
-    <string name="id_toolbar_top">Toolbar Top ID</string>
-    <string name="id_toolbar_bottom">Toolbar Bottom ID</string>
-
-    <string name="id_button_word">Word Button ID</string>
-    <string name="id_button_char">Character Button ID</string>
-    <string name="id_button_sent">Sentence Button ID</string>
-    <string name="id_button_para">Paragraph Button ID</string>
-
-
     <string name="alert_button_ok">OK</string>
     <string name="alert_button_done">Done</string>
 
