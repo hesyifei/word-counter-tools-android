@@ -31,7 +31,7 @@ android {
     defaultConfig {
         applicationId "com.arefly.wordcounter"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode code
         versionName "1.0"
     }
